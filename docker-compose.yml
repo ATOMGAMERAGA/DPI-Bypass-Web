@@ -1,0 +1,12 @@
+# Yerel test içindir.
+#   docker compose up --build   →   http://localhost:8080
+#
+# Dokploy'da bunu kullanmanıza gerek yok: orada "Application" tipi bir servis
+# oluşturup Build Type olarak "Dockerfile" seçmeniz yeterli (bkz. DOKPLOY.md).
+services:
+  web:
+    build: .
+    image: dpi-bypass-web
+    restart: unless-stopped
+    ports:
+      - "8080:80"
