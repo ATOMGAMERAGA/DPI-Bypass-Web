@@ -51,8 +51,20 @@ Aşağıdaki adımlar Dokploy'un güncel arayüzüne göredir. Toplam süre ~5 d
    | **Build Path** | `/` |
    | **Build Type** | **Dockerfile** |
    | **Docker File** | `Dockerfile` |
+   | **Docker Context Path** | boş (ya da `.`) |
+   | **Docker Build Stage** | boş |
 
 4. **Save**.
+
+> **Docker File alanını boş bırakmayın.** Boş kalırsa Dokploy kod dizininin
+> yolunu dosya adı sanar ve derleme şu hatayla düşer:
+>
+> ```
+> #1 [internal] load build definition from code
+> ERROR: failed to read dockerfile: open code: no such file or directory
+> ```
+>
+> Alana `Dockerfile` yazıp kaydetmek yeterlidir.
 
 > **Neden Nixpacks değil?** Nixpacks statik siteyi de derleyebilir ama sonuçta
 > ne servis edeceğini tahmin etmeye çalışır. `Dockerfile` seçeneği ne olacağını
@@ -128,6 +140,7 @@ Alternatif olarak Dokploy'un **Auto Deploy** anahtarını açmanız da yeterlidi
 | **502 / Bad Gateway** | Domain ayarındaki **Container Port** `80` değil. Düzeltip yeniden dağıtın. |
 | **Sertifika gelmiyor** | DNS A kaydı henüz yayılmamış ya da Cloudflare proxy'si açık. `dig dpibypass.atomland.xyz` ile IP'yi doğrulayın, proxy'yi gri yapın, **Deploy**'u tekrarlayın. |
 | **Eski içerik görünüyor** | Tarayıcı önbelleği. `/assets/` 30 gün önbelleklenir, `index.html` önbelleklenmez — sert yenileme (Ctrl+Shift+R) yeterlidir. |
+| **`failed to read dockerfile: open code: no such file or directory`** | **Docker File** alanı boş. `Dockerfile` yazıp kaydedin, sonra yeniden dağıtın. |
 | **Build "Dockerfile not found" diyor** | **Build Path** `/` ve **Docker File** `Dockerfile` olmalı. |
 | **Push ettim, site değişmedi** | Auto Deploy kapalı ya da webhook yanlış dalı dinliyor. Servisin **Branch** alanıyla push ettiğiniz dalın aynı olduğunu doğrulayın. |
 | **Site açılıyor ama düğmeler çalışmıyor** | `assets/js/app.js` 404 veriyordur. Tarayıcı konsolunu açıp yolu doğrulayın; `Dockerfile` içindeki `COPY assets/` satırının durduğundan emin olun. |
