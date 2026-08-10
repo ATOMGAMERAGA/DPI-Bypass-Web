@@ -1,11 +1,9 @@
+# Not: Dockerfile ve .dockerignore bilerek listelenmiyor — bazı BuildKit
+# sürümleri, bağlamdan dışlanmış bir Dockerfile'ı çözümlemekte zorlanıyor.
 .git
 .github
 .gitignore
-.dockerignore
-Dockerfile
 docker-compose.yml
-README.md
-DOKPLOY.md
 LICENSE
 node_modules
 *.md
