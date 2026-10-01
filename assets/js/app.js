@@ -1,196 +1,127 @@
-/* ============================================================
-   DPI Bypass — indirme sitesi
-   Yapımcı: Atom Gamer Arda A.G.A
-   ============================================================ */
 (function () {
-  "use strict";
-
-  var $  = function (s, r) { return (r || document).querySelector(s); };
-  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
-
-  /* ── Sürüm / bağlantı tablosu ─────────────────────────── */
-  var OS = {
-    windows: {
-      label: ".exe dosyasını indirin",
-      sub: "Windows 10 ve 11 · 1.0.0.22",
-      href: "https://github.com/ATOMGAMERAGA/DPI-Bypass-Windows/releases/download/v1.0.0.22/DpiBypass-Setup-1.0.0.22.exe",
-      direct: true
-    },
-    android: {
-      label: ".apk dosyasını indirin",
-      sub: "Android 12 ve üstü · 2.2.0",
-      href: "https://github.com/ATOMGAMERAGA/DPI-Bypass-DC/releases/download/v2.2.0/DPIBypass-2.2.0.apk",
-      direct: true
-    },
-    linux: {
-      label: "Kurulum komutunu görün",
-      sub: "Tek satırlık terminal kurulumu",
-      href: "#indir",
-      direct: false
-    }
-  };
-
-  /* ── İşletim sistemi tahmini ──────────────────────────── */
-  function detectOS() {
-    var ua = navigator.userAgent || "";
-    var plat = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || "";
-
-    if (/Android/i.test(ua)) return "android";
-    if (/iPhone|iPad|iPod/i.test(ua)) return "android";      // mobil kullanıcıya en yakın seçenek
-    if (/Windows|Win32|Win64|WOW64/i.test(ua + plat)) return "windows";
-    if (/Linux|X11|CrOS/i.test(ua + plat)) return "linux";
-    if (/Mac/i.test(ua + plat)) return "linux";              // masaüstü — Unix tarafı
-    return "windows";
-  }
-
-  /* ── Sekmeler ─────────────────────────────────────────── */
-  var tabs   = $$(".os-card");
-  var panels = $$(".panel");
-
-  function selectOS(os, focus) {
-    tabs.forEach(function (t) {
-      var on = t.dataset.os === os;
-      t.setAttribute("aria-selected", on ? "true" : "false");
-      t.tabIndex = on ? 0 : -1;
-      if (on && focus) t.focus();
-    });
-    panels.forEach(function (p) { p.hidden = p.id !== "panel-" + os; });
-    updateSmart(os);
-    try { localStorage.setItem("dpib-os", os); } catch (e) {}
-  }
-
-  tabs.forEach(function (tab, i) {
-    tab.addEventListener("click", function () { selectOS(tab.dataset.os); });
-    tab.addEventListener("keydown", function (e) {
-      var d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
-      if (!d) return;
-      e.preventDefault();
-      selectOS(tabs[(i + d + tabs.length) % tabs.length].dataset.os, true);
-    });
-  });
-
-  /* ── Akıllı indirme düğmesi ───────────────────────────── */
-  var smart      = $("#smart-download");
-  var smartLabel = $("#smart-label");
-  var smartSub   = $("#smart-sub");
-  var smartIco   = $("#smart-ico");
-
-  function updateSmart(os) {
-    var d = OS[os];
-    if (!d || !smart) return;
-
-    smartLabel.textContent = d.label;
-    smartSub.textContent   = d.sub;
-    smart.href = d.href;
-
-    // GitHub bağlantıları zaten "attachment" olarak servis edilir; ipucu olarak bırakıyoruz.
-    if (d.direct) smart.setAttribute("download", "");
-    else smart.removeAttribute("download");
-
-    var src = $(".os-ico", $("#tab-" + os));
-    if (src && smartIco) {
-      smartIco.innerHTML = "";
-      var clone = src.cloneNode(true);
-      clone.removeAttribute("class");
-      clone.setAttribute("width", "22");
-      clone.setAttribute("height", "22");
-      smartIco.appendChild(clone);
-    }
-  }
-
-  if (smart) {
-    smart.addEventListener("click", function () {
-      // Doğrudan indirme de olsa indirme bölümünü açıkta bırak.
-      var sec = $("#indir");
-      if (sec) setTimeout(function () { sec.scrollIntoView({ behavior: "smooth", block: "start" }); }, 60);
-    });
-  }
-
-  var saved = null;
-  try { saved = localStorage.getItem("dpib-os"); } catch (e) {}
-  selectOS(saved && OS[saved] ? saved : detectOS());
-
-  /* ── Kopyala ──────────────────────────────────────────── */
-  var toast = $("#toast");
+  'use strict';
+  var $ = function (selector) { return document.querySelector(selector); };
+  var $$ = function (selector) { return Array.from(document.querySelectorAll(selector)); };
+  var dialog = $('#download-dialog');
+  var helper = window.DPIBypassDownloads;
+  var tabs = $$('[role="tab"][data-platform]');
+  var opener;
+  var requests = { windows: 0, android: 0 };
   var toastTimer;
 
-  function showToast(msg) {
-    if (!toast) return;
-    toast.textContent = msg;
-    toast.classList.add("show");
+  function notify(message) {
+    var toast = $('#toast');
+    toast.textContent = message;
+    toast.classList.add('visible');
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(function () { toast.classList.remove("show"); }, 2200);
+    toastTimer = setTimeout(function () { toast.classList.remove('visible'); }, 3000);
   }
 
-  function copyText(text) {
-    if (navigator.clipboard && window.isSecureContext) {
-      return navigator.clipboard.writeText(text);
-    }
-    return new Promise(function (resolve, reject) {
-      var ta = document.createElement("textarea");
-      ta.value = text;
-      ta.style.cssText = "position:fixed;top:-1000px;opacity:0";
-      document.body.appendChild(ta);
-      ta.select();
-      var ok = false;
-      try { ok = document.execCommand("copy"); } catch (e) {}
-      document.body.removeChild(ta);
-      ok ? resolve() : reject();
+  async function refreshDownload(platform) {
+    if (platform === 'linux') return;
+    var link = $('[data-release="' + platform + '"]');
+    var status = $('[data-status="' + platform + '"]');
+    var repo = platform === 'android' ? 'DPI-Bypass-Android' : 'DPI-Bypass-Windows';
+    var id = ++requests[platform];
+    // A reopened dialog must never silently retain an outdated installer URL.
+    link.href = 'https://github.com/ATOMGAMERAGA/' + repo + '/releases/latest';
+    link.querySelector('span').textContent = platform === 'android' ? 'APK indir' : 'EXE indir';
+    status.textContent = 'En güncel sürüm kontrol ediliyor…';
+    var release = await helper.latestRelease(platform);
+    if (id !== requests[platform]) return;
+    link.href = release.href;
+    link.querySelector('span').textContent = release.fallback ? 'GitHub’dan son sürümü indir' : (platform === 'android' ? 'APK indir' : 'EXE indir');
+    status.textContent = release.fallback ? 'Son sürüm dosyalarını GitHub’da seçebilirsiniz.' : release.version + ' · ' + release.fileName;
+  }
+
+  function selectPlatform(platform, focus) {
+    tabs.forEach(function (tab) {
+      var active = tab.dataset.platform === platform;
+      tab.setAttribute('aria-selected', String(active));
+      tab.tabIndex = active ? 0 : -1;
+      if (active && focus) tab.focus();
+    });
+    $$('.download-panel').forEach(function (panel) { panel.hidden = panel.id !== 'download-' + platform; });
+    refreshDownload(platform);
+  }
+
+  if (dialog && helper && typeof dialog.showModal === 'function') {
+    $$('[data-download]').forEach(function (trigger) {
+      trigger.addEventListener('click', function (event) {
+        if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        opener = trigger;
+        var detected = helper.detectOS(navigator);
+        var page = document.body.dataset.page;
+        var platform = trigger.dataset.download || (['android', 'windows', 'linux'].includes(page) ? page : detected) || 'windows';
+        $('#device-note').hidden = Boolean(detected);
+        selectPlatform(platform);
+        if (!dialog.open) dialog.showModal();
+        document.body.classList.add('modal-open');
+      });
+    });
+    $('#dialog-close').addEventListener('click', function () { dialog.close(); });
+    dialog.addEventListener('click', function (event) {
+      if (event.target !== dialog) return;
+      var bounds = dialog.getBoundingClientRect();
+      if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) dialog.close();
+    });
+    dialog.addEventListener('close', function () {
+      document.body.classList.remove('modal-open');
+      if (opener && opener.isConnected) opener.focus({ preventScroll: true });
+    });
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function () { selectPlatform(tab.dataset.platform); });
+      tab.addEventListener('keydown', function (event) {
+        var next;
+        if (event.key === 'ArrowRight') next = (i + 1) % tabs.length;
+        if (event.key === 'ArrowLeft') next = (i + tabs.length - 1) % tabs.length;
+        if (event.key === 'Home') next = 0;
+        if (event.key === 'End') next = tabs.length - 1;
+        if (next === undefined) return;
+        event.preventDefault();
+        selectPlatform(tabs[next].dataset.platform, true);
+      });
     });
   }
 
-  $$(".code .copy").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var box = btn.closest(".code");
-      var text = box.dataset.copy || $("code", box).textContent.trim();
-      copyText(text).then(function () {
-        var old = btn.textContent;
-        btn.textContent = "Kopyalandı";
-        btn.classList.add("done");
-        showToast("Komut panoya kopyalandı");
-        setTimeout(function () {
-          btn.textContent = old;
-          btn.classList.remove("done");
-        }, 1900);
-      }).catch(function () {
-        showToast("Kopyalanamadı — komutu elle seçin");
-      });
+  $$('[data-copy]').forEach(function (button) {
+    button.addEventListener('click', async function () {
+      var code = button.closest('.code-block').querySelector('code');
+      var original = button.textContent;
+      try {
+        if (!navigator.clipboard || !window.isSecureContext) throw new Error('Clipboard unavailable');
+        await navigator.clipboard.writeText(code.textContent.trim());
+        button.textContent = 'Kopyalandı';
+        notify('Kurulum komutu kopyalandı.');
+        setTimeout(function () { button.textContent = original; }, 2200);
+      } catch (_) {
+        var selection = window.getSelection();
+        var range = document.createRange();
+        range.selectNodeContents(code);
+        selection.removeAllRanges();
+        selection.addRange(range);
+        notify('Komut seçildi. Kopyalamak için Ctrl+C veya telefonunuzun kopyala menüsünü kullanın.');
+      }
     });
   });
 
-  /* ── Üst çubuk gölgesi ────────────────────────────────── */
-  var nav = $("#nav");
-  var onScroll = function () {
-    if (nav) nav.classList.toggle("scrolled", window.scrollY > 12);
-  };
-  addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
-
-  /* ── Görünüme girince belirme ─────────────────────────── */
-  var targets = $$(".os-tabs, .feat, .faq details, .sec-head");
-  if ("IntersectionObserver" in window && targets.length) {
-    targets.forEach(function (el) { el.classList.add("reveal"); });
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (!en.isIntersecting) return;
-        en.target.classList.add("in");
-        io.unobserve(en.target);
-      });
-    }, { rootMargin: "0px 0px -8% 0px", threshold: .08 });
-    targets.forEach(function (el) { io.observe(el); });
+  var toggle = $('#theme-toggle');
+  function syncTheme() {
+    var dark = document.documentElement.dataset.theme === 'dark';
+    toggle.setAttribute('aria-label', dark ? 'Açık temaya geç' : 'Koyu temaya geç');
+    toggle.setAttribute('aria-pressed', String(dark));
+    $('meta[name="theme-color"]').content = dark ? '#121916' : '#f7f8f5';
   }
-
-  /* ── Yıl ──────────────────────────────────────────────── */
-  var y = $("#year");
-  if (y) y.textContent = new Date().getFullYear();
-
-  /* ── Tema ─────────────────────────────────────────────── */
-  var toggle = $("#theme-toggle");
   if (toggle) {
-    toggle.addEventListener("click", function () {
-      var next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-      document.documentElement.dataset.theme = next;
-      try { localStorage.setItem("dpib-theme", next); } catch (e) {}
+    syncTheme();
+    toggle.addEventListener('click', function () {
+      var theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = theme;
+      try { localStorage.setItem('dpib-theme', theme); } catch (_) {}
+      syncTheme();
     });
   }
+  var year = $('#year');
+  if (year) year.textContent = new Date().getFullYear();
 })();

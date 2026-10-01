@@ -11,7 +11,7 @@ Aşağıdaki adımlar Dokploy'un güncel arayüzüne göredir. Toplam süre ~5 d
 ## 0. Ön koşullar
 
 - Çalışan bir Dokploy kurulumu (VPS üzerinde, panel açılıyor).
-- Bir alan adı (örn. `dpibypass.atomland.xyz`) ve DNS'ini yönetebilme.
+- Bir alan adı (örn. `dpi.atomland.xyz`) ve DNS'ini yönetebilme.
 - Dokploy'un GitHub hesabınıza bağlı olması (yoksa 1. adım).
 
 ---
@@ -47,7 +47,7 @@ Aşağıdaki adımlar Dokploy'un güncel arayüzüne göredir. Toplam süre ~5 d
    | --- | --- |
    | **Provider** | `GitHub` |
    | **Repository** | `ATOMGAMERAGA/DPI-Bypass-Web` |
-   | **Branch** | `claude/dpi-bypass-download-site-txylb5`<br>(birleştirdikten sonra `main`) |
+   | **Branch** | `main` |
    | **Build Path** | `/` |
    | **Build Type** | **Dockerfile** |
    | **Docker File** | `Dockerfile` |
@@ -79,7 +79,7 @@ Aşağıdaki adımlar Dokploy'un güncel arayüzüne göredir. Toplam süre ~5 d
 
 ```
 Tip   Ad                       Değer
-A     dpibypass                <SUNUCU_IP>
+A     dpi                     <SUNUCU_IP>
 ```
 
 > Cloudflare kullanıyorsanız sertifika alınana kadar bulut simgesini **gri**
@@ -89,7 +89,7 @@ Sonra Dokploy'da servisin **Domains** sekmesi → **Add Domain**:
 
 | Alan | Değer |
 | --- | --- |
-| **Host** | `dpibypass.atomland.xyz` |
+| **Host** | `dpi.atomland.xyz` |
 | **Path** | `/` |
 | **Container Port** | `80` |
 | **HTTPS** | açık |
@@ -110,8 +110,8 @@ derlenişini canlı izleyebilirsiniz. Bitince alan adınızı açın — site ya
 Kontrol için:
 
 ```bash
-curl -I https://dpibypass.atomland.xyz          # 200 OK beklenir
-curl  https://dpibypass.atomland.xyz/healthz    # "ok" döner
+curl -I https://dpi.atomland.xyz          # 200 OK beklenir
+curl  https://dpi.atomland.xyz/healthz    # "ok" döner
 ```
 
 ---
@@ -138,7 +138,7 @@ Alternatif olarak Dokploy'un **Auto Deploy** anahtarını açmanız da yeterlidi
 | Belirti | Sebep / çözüm |
 | --- | --- |
 | **502 / Bad Gateway** | Domain ayarındaki **Container Port** `80` değil. Düzeltip yeniden dağıtın. |
-| **Sertifika gelmiyor** | DNS A kaydı henüz yayılmamış ya da Cloudflare proxy'si açık. `dig dpibypass.atomland.xyz` ile IP'yi doğrulayın, proxy'yi gri yapın, **Deploy**'u tekrarlayın. |
+| **Sertifika gelmiyor** | DNS A kaydı henüz yayılmamış ya da Cloudflare proxy'si açık. `dig dpi.atomland.xyz` ile IP'yi doğrulayın, proxy'yi gri yapın, **Deploy**'u tekrarlayın. |
 | **Eski içerik görünüyor** | Tarayıcı önbelleği. `/assets/` 30 gün önbelleklenir, `index.html` önbelleklenmez — sert yenileme (Ctrl+Shift+R) yeterlidir. |
 | **`failed to read dockerfile: open code: no such file or directory`** | **Docker File** alanı boş. `Dockerfile` yazıp kaydedin, sonra yeniden dağıtın. |
 | **Build "Dockerfile not found" diyor** | **Build Path** `/` ve **Docker File** `Dockerfile` olmalı. |
@@ -149,9 +149,17 @@ Alternatif olarak Dokploy'un **Auto Deploy** anahtarını açmanız da yeterlidi
 
 ## Sonradan sürüm güncellemek
 
-Yeni bir uygulama sürümü çıktığında iki dosyada birer yer değişir:
+Android ve Windows indirmeleri GitHub Releases API ile son kararlı dosyayı bulur.
+Yeni uygulama sürümü çıktığında site bağlantılarını elle güncellemek gerekmez.
+Linux kurulum komutu resmî deponun güncel `main/install.sh` betiğini kullanır.
 
-1. `index.html` — ilgili indirme düğmesinin `href`'i ve yanındaki sürüm yazısı.
-2. `assets/js/app.js` — dosyanın başındaki `OS` tablosundaki `href` / `sub`.
+Site metinlerini veya CSS/JS dosyalarını değiştirdiğinizde `node scripts/build-site.mjs`
+çalıştırın ve üretilmiş HTML dosyalarını da push edin. Bu işlem CSS/JS adreslerine
+önbelleği yenileyen içerik hash'ini ekler. Otomatik dağıtım açıksa Dokploy değişikliği
+yayına alır.
 
-Değişikliği push edin; otomatik dağıtım açıksa gerisi kendiliğinden olur.
+## Google indekslemesi
+
+Google Search Console'da `dpi.atomland.xyz` alan adını doğrulayın ve
+`https://dpi.atomland.xyz/sitemap.xml` adresini gönderin. Sitemap ana sayfayı,
+Android, Windows, Linux ve sınırsız paylaşım rehberlerini içerir.

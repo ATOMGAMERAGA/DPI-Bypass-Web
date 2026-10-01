@@ -9,6 +9,11 @@ COPY nginx.conf /etc/nginx/conf.d/site.conf
 # Site dosyaları
 COPY index.html /usr/share/nginx/html/
 COPY robots.txt /usr/share/nginx/html/
+COPY sitemap.xml 404.html /usr/share/nginx/html/
+COPY windows/ /usr/share/nginx/html/windows/
+COPY android/ /usr/share/nginx/html/android/
+COPY linux/ /usr/share/nginx/html/linux/
+COPY sinirsiz-paylasim/ /usr/share/nginx/html/sinirsiz-paylasim/
 COPY assets/ /usr/share/nginx/html/assets/
 
 EXPOSE 80

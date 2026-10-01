@@ -1,477 +1,77 @@
 <!DOCTYPE html>
-<html lang="tr" data-theme="dark">
+<html lang="tr" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>DPI Bypass — Discord ve engelli sitelere erişim</title>
-<meta name="description" content="Türkiye'deki DPI engellerini aşan açık kaynak uygulama. Windows, Linux ve Android için tek tıkla indirin. VPN değildir, ping artmaz.">
+<title>DPI Bypass — Android, Windows ve Linux için ücretsiz indir</title>
+<meta name="description" content="DPI Bypass ile DPI ve DNS engellerine karşı yerel bağlantı. Android APK, Windows ve Linux indirmeleri, kurulum rehberleri ve sınırsız internet paylaşım modu.">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="Atom Gamer Arda A.G.A">
-<meta name="theme-color" content="#0a1120">
-
+<meta name="theme-color" content="#f7f8f5">
+<link rel="canonical" href="https://dpi.atomland.xyz/">
+<meta property="og:locale" content="tr_TR">
 <meta property="og:type" content="website">
-<meta property="og:title" content="DPI Bypass — Discord ve engelli sitelere erişim">
-<meta property="og:description" content="Windows, Linux ve Android için açık kaynak DPI atlatma uygulaması. VPN değildir, ping artmaz.">
-<meta property="og:image" content="assets/img/logo-512.png">
+<meta property="og:site_name" content="DPI Bypass">
+<meta property="og:title" content="DPI Bypass — Android, Windows ve Linux için ücretsiz indir">
+<meta property="og:description" content="DPI Bypass ile DPI ve DNS engellerine karşı yerel bağlantı. Android APK, Windows ve Linux indirmeleri, kurulum rehberleri ve sınırsız internet paylaşım modu.">
+<meta property="og:url" content="https://dpi.atomland.xyz/">
+<meta property="og:image" content="https://dpi.atomland.xyz/assets/img/social.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="DPI Bypass — Windows, Android ve Linux için açık kaynak uygulama">
 <meta name="twitter:card" content="summary_large_image">
-
-<link rel="icon" href="assets/img/favicon.ico" sizes="any">
-<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="assets/img/logo-256.png">
-<link rel="stylesheet" href="assets/css/style.css">
-<script>
-  // Temayı ilk boyamadan önce uygula. Varsayılan koyu; kullanıcı seçerse tercihi kalıcı.
-  try {
-    var t = localStorage.getItem('dpib-theme');
-    document.documentElement.dataset.theme = (t === 'light' || t === 'dark') ? t : 'dark';
-  } catch (e) {}
-</script>
+<meta name="twitter:title" content="DPI Bypass — Android, Windows ve Linux için ücretsiz indir">
+<meta name="twitter:description" content="DPI Bypass ile DPI ve DNS engellerine karşı yerel bağlantı. Android APK, Windows ve Linux indirmeleri, kurulum rehberleri ve sınırsız internet paylaşım modu.">
+<meta name="twitter:image" content="https://dpi.atomland.xyz/assets/img/social.png">
+<link rel="icon" href="/assets/img/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/img/logo.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/logo-256.png">
+<script>try{var t=localStorage.getItem('dpib-theme');document.documentElement.dataset.theme=t==='dark'?'dark':'light'}catch(e){}</script>
+<link rel="stylesheet" href="/assets/css/style.css?v=6897a6ffe287">
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","@id":"https://dpi.atomland.xyz/#website","name":"DPI Bypass","url":"https://dpi.atomland.xyz/","inLanguage":"tr-TR"}]</script>
 </head>
-<body>
-
-<div class="aurora" aria-hidden="true">
-  <span class="blob blob-1"></span>
-  <span class="blob blob-2"></span>
-  <span class="blob blob-3"></span>
-  <span class="grid"></span>
-</div>
-
-<a class="skip" href="#indir">İçeriğe geç</a>
-
-<header class="nav" id="nav">
-  <div class="nav-inner glass">
-    <a class="brand" href="#top">
-      <img src="assets/img/logo.svg" alt="" width="32" height="32">
-      <span>DPI Bypass</span>
-    </a>
-    <nav class="nav-links" aria-label="Ana menü">
-      <a href="#indir">İndir</a>
-      <a href="#ozellikler">Özellikler</a>
-      <a href="#sss">S.S.S.</a>
-    </nav>
-    <button class="icon-btn" id="theme-toggle" type="button" aria-label="Temayı değiştir" title="Temayı değiştir">
-      <svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
-      <svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8.2 8.2 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
-    </button>
-  </div>
-</header>
-
-<main id="top">
-
-  <!-- ══ HERO ══ -->
-  <section class="hero">
-    <div class="wrap">
-      <p class="pill">
-        <span class="dot"></span>
-        Açık kaynak · VPN değildir · Ping artmaz
-      </p>
-
-      <h1>Engeller kalksın,<br><span class="grad">hızınız düşmesin.</span></h1>
-
-      <p class="lead">
-        Türkiye'deki DPI ve DNS tabanlı engelleri, trafiğinizi başka bir ülkeye
-        çıkarmadan aşar. Discord başta olmak üzere engellenen servisler
-        çalışmaya başlar; ping, oyun ve ses trafiği aynı kalır.
-      </p>
-
-      <div class="hero-cta">
-        <a class="btn btn-primary" href="#indir" id="smart-download">
-          <span class="btn-ico" id="smart-ico"></span>
-          <span>
-            <b id="smart-label">Hemen indir</b>
-            <small id="smart-sub">İşletim sisteminizi seçin</small>
-          </span>
-        </a>
-        <a class="btn btn-ghost" href="#ozellikler">Nasıl çalışıyor?</a>
-      </div>
-
-      <ul class="hero-stats">
-        <li><b>3</b><span>platform</span></li>
-        <li><b>17+</b><span>atlatma yöntemi</span></li>
-        <li><b>0 ms</b><span>ek gecikme</span></li>
-        <li><b>GPL-3.0</b><span>lisans</span></li>
-      </ul>
-    </div>
+<body data-page="home"><a class="skip-link" href="#main">İçeriğe geç</a>
+<header class="site-header"><div class="container header-inner">
+  <a class="brand" href="/" aria-label="DPI Bypass ana sayfa"><img src="/assets/img/logo.svg" width="34" height="34" alt=""><span>DPI Bypass</span></a>
+  <nav class="desktop-nav" aria-label="Ana menü"><a href="/#platformlar">Platformlar</a><a href="/sinirsiz-paylasim/">Sınırsız paylaşım</a><a href="/#sss">Sorular</a></nav>
+  <div class="header-actions"><button class="theme-toggle" id="theme-toggle" aria-label="Koyu temaya geç" type="button"><svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg></button><a class="button button-small button-primary" href="/#indir" data-download="" aria-haspopup="dialog">İndir<svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></svg></a></div>
+</div></header><main id="main">
+<section class="hero container" id="indir"><div class="hero-copy"><p class="eyebrow"><span class="status-dot"></span>ÜCRETSİZ &amp; AÇIK KAYNAK</p><h1>Daha özgür<br>bir internet<span class="accent">.</span></h1><p class="hero-description">DPI Bypass ile Discord ve DPI engelli servislere erişin. Trafiğiniz uzak bir VPN sunucusuna yönlendirilmeden, kendi cihazınızda işlenir.</p><div class="hero-actions"><a class="button button-primary" href="/#indir" data-download="" aria-haspopup="dialog">Ücretsiz indir<svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></svg></a><a class="text-link" href="#platformlar">Platformları keşfet <svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div><p class="hero-platforms"><svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M3 4h8v7H3zm10 0h8v7h-8zM3 13h8v7H3zm10 0h8v7h-8z"/></svg> Windows <span>·</span><svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="m7 5-2-3m12 3 2-3M4 11a8 8 0 0 1 16 0ZM4 14v4h16v-4M8 18v3m8-3v3"/><path d="M8 8h.01M16 8h.01"/></svg> Android <span>·</span><svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="m5 6 6 6-6 6m9 0h6"/></svg> Linux</p></div><div class="connection-art" role="img" aria-label="DPI Bypass ile telefon, tablet ve bilgisayarda yerel bağlantı; şematik gösterim">
+    <span class="art-label">BAĞLANTI SİZİN CİHAZINIZDA.</span>
+    <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+    <div class="art-desktop"><div class="desktop-top"><i></i><i></i><i></i><span>DPI Bypass</span></div><div class="desktop-content"><img src="/assets/img/logo.svg" width="66" height="66" alt=""><span class="connection-line"></span><strong>İnternete bir adım daha yakın.</strong><p>Yerel işleme. Doğrudan bağlantı.</p></div><div class="desktop-bottom"><span class="status-dot"></span>Açık kaynak <span>Windows / Linux</span></div></div>
+    <div class="art-phone"><div class="phone-notch"></div><span class="phone-time">09:41</span><div class="phone-content"><svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M2 8a16 16 0 0 1 20 0M5 12a11 11 0 0 1 14 0m-11 4a6 6 0 0 1 8 0M12 20h.01"/></svg><strong>DPI Bypass</strong><span>Android</span><div class="phone-connect"><svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg></div><small>Telefon &amp; tablet</small></div><div class="phone-home"></div></div>
+    <span class="art-caption">Üç platform. Aynı özgürlük.</span>
+  </div></section>
+<div class="container"><div class="benefit-strip"><div><svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg><span><strong>Doğrudan bağlantı</strong><small>Uzak VPN sunucusu olmadan</small></span></div><div><svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="m8 6-6 6 6 6m8-12 6 6-6 6M14 3l-4 18"/></svg><span><strong>Tamamen açık kaynak</strong><small>Kodu inceleyin, ücretsiz kullanın</small></span></div><div><svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span><strong>Kolay başlangıç</strong><small>Cihazınıza uygun uygulamayı seçin</small></span></div></div></div>
+<section class="section container" id="platformlar"><div class="section-heading"><div><p class="eyebrow">CİHAZINIZA UYGUN</p><h2>Nerede kullanmak istersiniz?</h2></div><p>Bilgisayar, telefon ya da tablet.<br>Size uygun sürüm burada.</p></div><div class="platform-grid"><article class="platform-card"><div class="platform-card-top"><svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M3 4h8v7H3zm10 0h8v7h-8zM3 13h8v7H3zm10 0h8v7h-8z"/></svg><span>EXE</span></div><h3>DPI Bypass Windows</h3><p>Bilgisayarınızdaki uygulamalar için DPI atlatma. Kolay kurulum ve otomatik bağlantı ayarları.</p><small>Windows 10 / 11 · 64 bit</small><div class="platform-card-actions"><a class="button button-outline" href="/windows/" data-download="windows" aria-haspopup="dialog">Windows için indir<svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></svg></a><a href="/windows/">Kurulum rehberi <svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div></article><article class="platform-card"><div class="platform-card-top"><svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="m7 5-2-3m12 3 2-3M4 11a8 8 0 0 1 16 0ZM4 14v4h16v-4M8 18v3m8-3v3"/><path d="M8 8h.01M16 8h.01"/></svg><span>APK</span></div><h3>DPI Bypass Android</h3><p>Telefon ve tabletinizde kullanın. Root gerektirmeyen uygulama ve tek dokunuşla bağlantı.</p><small>Android 12 ve üzeri</small><div class="platform-card-actions"><a class="button button-outline" href="/android/" data-download="android" aria-haspopup="dialog">Android için indir<svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></svg></a><a href="/android/">Kurulum rehberi <svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div></article><article class="platform-card"><div class="platform-card-top"><svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="m5 6 6 6-6 6m9 0h6"/></svg><span>Terminal</span></div><h3>DPI Bypass Linux</h3><p>Linux masaüstünüz için yerel DPI atlatma servisi. Terminalden kurulum ve grafik arayüz.</p><small>systemd · Python 3.8+</small><div class="platform-card-actions"><a class="button button-outline" href="/linux/" data-download="linux" aria-haspopup="dialog">Kuruluma başla<svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></svg></a><a href="/linux/">Kurulum rehberi <svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div></article></div></section>
+<section class="sharing-section container"><div class="sharing-inner"><div class="sharing-copy"><p class="eyebrow">SINIRSIZ PAYLAŞIM MODU</p><h2>Mobil internetiniz,<br>diğer cihazlarınızda.</h2><p>Uyumlu sınırsız mobil paketinizi erişim noktası üzerinden bilgisayarınıza, Android telefonunuza veya tabletinize paylaşın. DPI Bypass’ın paylaşım modu, bağlantıyı kullanan cihazda çalışır.</p><a class="button button-white" href="/sinirsiz-paylasim/">Nasıl kullanılır? <svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a><p class="carrier-list">Türk Telekom <span>·</span> Turkcell <span>·</span> Vodafone</p><small class="sharing-note">Uyumluluk, operatör ve tarifenin paylaşım koşullarına bağlıdır.</small></div><div class="sharing-visual" aria-hidden="true"><div class="sharing-source"><svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M2 8a16 16 0 0 1 20 0M5 12a11 11 0 0 1 14 0m-11 4a6 6 0 0 1 8 0M12 20h.01"/></svg><span>Mobil erişim noktası</span></div><div class="sharing-branches"><span></span><span></span></div><div class="sharing-targets"><div><svg viewBox="0 0 64 54"><rect x="10" y="4" width="44" height="30" rx="3"/><path d="M4 44h56l-6-10H10Z"/><path d="M26 39h12"/></svg><span>Bilgisayar</span></div><div><svg viewBox="0 0 64 54"><rect x="18" y="2" width="28" height="48" rx="5"/><path d="M29 8h6m-6 36h6"/></svg><span>Telefon &amp; tablet</span></div></div><p>Paylaş. Bağlan. Devam et.</p></div></div></section>
+<section class="section container how-section" id="nasil-calisir"><div><p class="eyebrow">KISA BİR AÇIKLAMA</p><h2>VPN’den farklı.<br>Bağlantınıza daha yakın.</h2></div><div class="how-copy"><p>DPI, internet sağlayıcısının bağlantı paketlerini incelemesidir. DPI Bypass, bağlantının ilk paketlerini yerelde yeniden düzenleyerek bu incelemeye dayanan engelleri aşmayı amaçlar.</p><p>Uzak bir VPN sunucusu kullanmaz. IP adresinizi gizlemez ve anonimlik sağlamaz. Çalışan yöntem, ağınıza ve sağlayıcınıza göre değişebilir.</p><a class="text-link" href="https://github.com/ATOMGAMERAGA/DPI-Bypass-Android" target="_blank" rel="noopener noreferrer">Kaynak kodu inceleyin <svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div></section>
+<section class="section container faq-section" id="sss"><div><p class="eyebrow">AKLINIZDA KALMASIN</p><h2>Birkaç kısa cevap.</h2><p class="section-description">Başlamadan önce bilmeniz gerekenler.</p></div><div class="faq-list"><details><summary>DPI Bypass ücretsiz mi?<span aria-hidden="true">+</span></summary><div class="faq-answer"><p>Evet. Android, Windows ve Linux sürümleri ücretsizdir. Kaynak kodlar GPL-3.0 lisansı ile GitHub üzerinde paylaşılır.</p></div></details><details><summary>Telefon ve tabletlerde çalışıyor mu?<span aria-hidden="true">+</span></summary><div class="faq-answer"><p>Android 12 ve üzeri telefon ve tabletler için APK sürümü vardır. Root gerekmez. iOS ve macOS için yerel bir uygulama bulunmuyor.</p><p><a href="/android/">Android indirme ve kurulum rehberi</a></p></div></details><details><summary>Android neden VPN izni istiyor?<span aria-hidden="true">+</span></summary><div class="faq-answer"><p>Android uygulaması, trafiği cihaz içinde işlemek için sistemin yerel VPN arayüzünü kullanır. Bu izin, trafiğinizin uzak bir VPN sunucusuna gönderildiği anlamına gelmez. Aynı anda başka bir VPN uygulaması kullanımı çakışabilir.</p></div></details><details><summary>Sınırsız internet paylaşım modu nasıl kullanılır?<span aria-hidden="true">+</span></summary><div class="faq-answer"><p>Telefonunuzun mobil erişim noktasına bağlanın. Bağlanan cihazda DPI Bypass’ı kurun ve ayarlardaki Vodafone Sınırsız Modu’nu açın. PC sürümleri de bu modu destekler. Sonuç, kullanılan paket ve ağ koşullarına bağlıdır.</p><p><a href="/sinirsiz-paylasim/">Paylaşım rehberini inceleyin</a></p></div></details><details><summary>İndirme bağlantıları güncel mi?<span aria-hidden="true">+</span></summary><div class="faq-answer"><p>İndirme penceresi GitHub’daki en güncel kararlı sürümün APK veya Windows kurulum dosyasını bulur. Sürüm bilgisi alınamazsa GitHub’ın son sürüm sayfasını açar. Linux kurulumu resmî depodaki güncel kurulum betiğini kullanır.</p></div></details></div></section>
+</main><footer class="site-footer"><div class="container">
+  <div class="footer-top"><a class="brand" href="/"><img src="/assets/img/logo.svg" width="30" height="30" alt=""><span>DPI Bypass</span></a><p>Daha açık bir internet için, açık kaynak.</p></div>
+  <div class="footer-grid"><div><span class="footer-label">Uygulamalar</span><a href="/windows/">Windows için DPI Bypass</a><a href="/android/">Android APK indir</a><a href="/linux/">Linux kurulumu</a></div><div><span class="footer-label">Keşfet</span><a href="/sinirsiz-paylasim/">Sınırsız internet paylaşımı</a><a href="/#sss">Sık sorulan sorular</a></div><div><span class="footer-label">Kaynak kod</span><a href="https://github.com/ATOMGAMERAGA/DPI-Bypass-Windows" target="_blank" rel="noopener noreferrer">Windows GitHub deposu <svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a><a href="https://github.com/ATOMGAMERAGA/DPI-Bypass-Android" target="_blank" rel="noopener noreferrer">Android GitHub deposu <svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a><a href="https://github.com/ATOMGAMERAGA/DPI-Bypass-Linux" target="_blank" rel="noopener noreferrer">Linux GitHub deposu <svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div></div>
+  <div class="footer-bottom"><p>© <span id="year">2026</span> Atom Gamer Arda A.G.A</p><p>GPL-3.0 · Ücretsiz ve açık kaynak</p></div>
+</div></footer><dialog id="download-dialog" class="download-dialog" aria-labelledby="download-title" aria-describedby="download-intro">
+  <div class="dialog-header"><div><p class="eyebrow">DPI BYPASS</p><h2 id="download-title">Cihazınız için indirin.</h2></div><button id="dialog-close" class="icon-button" type="button" aria-label="İndirme penceresini kapat" autofocus><svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button></div>
+  <p id="download-intro" class="dialog-intro">Platformunuzu seçin. Her zaman en güncel kararlı sürüme ulaşın.</p>
+  <p id="device-note" class="device-note" hidden>Cihazınız otomatik eşleştirilemedi. iOS ve macOS için yerel uygulama bulunmuyor. Desteklenen platformları aşağıdan inceleyebilirsiniz.</p>
+  <div class="platform-tabs" role="tablist" aria-label="İndirme platformu"><button type="button" id="tab-windows" role="tab" data-platform="windows" aria-controls="download-windows" aria-selected="true" tabindex="0"><svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M3 4h8v7H3zm10 0h8v7h-8zM3 13h8v7H3zm10 0h8v7h-8z"/></svg>Windows</button><button type="button" id="tab-android" role="tab" data-platform="android" aria-controls="download-android" aria-selected="false" tabindex="-1"><svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="m7 5-2-3m12 3 2-3M4 11a8 8 0 0 1 16 0ZM4 14v4h16v-4M8 18v3m8-3v3"/><path d="M8 8h.01M16 8h.01"/></svg>Android</button><button type="button" id="tab-linux" role="tab" data-platform="linux" aria-controls="download-linux" aria-selected="false" tabindex="-1"><svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="m5 6 6 6-6 6m9 0h6"/></svg>Linux</button></div>
+  <section class="download-panel" id="download-windows" role="tabpanel" aria-labelledby="tab-windows" tabindex="0" >
+    <div class="download-summary"><div><h3>DPI Bypass Windows</h3><p>Windows 10 / 11 · 64 bit</p></div><span class="file-type">EXE</span></div>
+    <a class="button button-primary download-file" data-release="windows" href="https://github.com/ATOMGAMERAGA/DPI-Bypass-Windows/releases/latest"><svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></svg><span>EXE indir</span></a><p class="release-status" data-status="windows" role="status">En güncel kararlı sürüm · GitHub Releases</p>
+    <div class="quick-steps"><span>BAŞLAMAK İÇİN</span><ol><li>Kurulum dosyasını çalıştırın.</li><li>Uygulamayı açın ve bağlanın.</li></ol></div>
+    <div class="download-links"><a href="/windows/">Kurulum rehberi <svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a><a href="https://github.com/ATOMGAMERAGA/DPI-Bypass-Windows/releases/latest" target="_blank" rel="noopener noreferrer">GitHub sürümleri</a></div>
+  </section><section class="download-panel" id="download-android" role="tabpanel" aria-labelledby="tab-android" tabindex="0" hidden>
+    <div class="download-summary"><div><h3>DPI Bypass Android</h3><p>Android 12 ve üzeri</p></div><span class="file-type">APK</span></div>
+    <a class="button button-primary download-file" data-release="android" href="https://github.com/ATOMGAMERAGA/DPI-Bypass-Android/releases/latest"><svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></svg><span>APK indir</span></a><p class="release-status" data-status="android" role="status">En güncel kararlı sürüm · GitHub Releases</p>
+    <div class="quick-steps"><span>BAŞLAMAK İÇİN</span><ol><li>APK dosyasını telefon veya tabletinize kurun.</li><li>Uygulamayı açın ve yerel VPN iznini onaylayın.</li></ol></div>
+    <div class="download-links"><a href="/android/">Kurulum rehberi <svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a><a href="https://github.com/ATOMGAMERAGA/DPI-Bypass-Android/releases/latest" target="_blank" rel="noopener noreferrer">GitHub sürümleri</a></div>
+  </section><section class="download-panel" id="download-linux" role="tabpanel" aria-labelledby="tab-linux" tabindex="0" hidden>
+    <div class="download-summary"><div><h3>DPI Bypass Linux</h3><p>systemd · Python 3.8+</p></div><span class="file-type">Terminal</span></div>
+    <p class="download-help">Terminali açın ve kurulum komutunu çalıştırın.</p><div class="code-block"><code>curl -fsSL https://raw.githubusercontent.com/ATOMGAMERAGA/DPI-Bypass-Linux/main/install.sh | sudo bash</code><button class="copy-button" data-copy type="button">Komutu kopyala</button></div><p class="download-help">Komut, resmî GitHub deposundaki kurulum betiğini yönetici yetkisiyle çalıştırır. <a href="https://github.com/ATOMGAMERAGA/DPI-Bypass-Linux/blob/main/install.sh" target="_blank" rel="noopener noreferrer">Betiği incele</a></p>
+    <div class="quick-steps"><span>BAŞLAMAK İÇİN</span><ol><li>Kurulum tamamlanınca DPI Bypass’ı açın.</li><li>Otomatik modu seçip bağlanın.</li></ol></div>
+    <div class="download-links"><a href="/linux/">Kurulum rehberi <svg class="icon " viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a><a href="https://github.com/ATOMGAMERAGA/DPI-Bypass-Linux" target="_blank" rel="noopener noreferrer">Kaynak kod</a></div>
   </section>
-
-  <!-- ══ İNDİR ══ -->
-  <section class="section" id="indir">
-    <div class="wrap">
-      <header class="sec-head">
-        <h2>İşletim sisteminizi seçin</h2>
-        <p>Cihazınızı otomatik algıladık, dilerseniz elle değiştirin.</p>
-      </header>
-
-      <div class="os-tabs" role="tablist" aria-label="İşletim sistemi">
-        <button class="os-card glass" role="tab" id="tab-windows" aria-controls="panel-windows" aria-selected="true" data-os="windows">
-          <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true" class="os-ico"><path d="M3 5.6l7.2-1v7H3zM11.6 4.4L21 3v8.6h-9.4zM3 12.9h7.2v6.9l-7.2-1zM11.6 12.9H21V21l-9.4-1.3z" fill="currentColor" stroke="none"/></svg>
-          <b>Windows</b>
-          <small>10 &amp; 11 · 64-bit</small>
-        </button>
-        <button class="os-card glass" role="tab" id="tab-linux" aria-controls="panel-linux" aria-selected="false" tabindex="-1" data-os="linux">
-          <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true" class="os-ico"><path d="M12 2.3c2.5 0 3.9 1.8 3.8 4.2-.1 1.7.4 2.5 1.4 4 1 1.6 2 3 2 4.7 0 2.2-1.4 3.1-2.4 3.1-.5 0-.8-.2-1.2-.4l.7 1.8c.2.6-.2 1.2-.9 1.2H8.6c-.7 0-1.1-.6-.9-1.2l.7-1.8c-.4.2-.7.4-1.2.4-1 0-2.4-.9-2.4-3.1 0-1.7 1-3.1 2-4.7 1-1.5 1.5-2.3 1.4-4C8.1 4.1 9.5 2.3 12 2.3z" fill="currentColor" stroke="none"/><circle cx="10.3" cy="6.9" r=".95" fill="var(--bg)" stroke="none"/><circle cx="13.7" cy="6.9" r=".95" fill="var(--bg)" stroke="none"/><path d="M12 7.9l1.6 1.4c-.4.6-1 .9-1.6.9s-1.2-.3-1.6-.9z" fill="var(--bg)" stroke="none"/></svg>
-          <b>Linux</b>
-          <small>systemd · GNOME</small>
-        </button>
-        <button class="os-card glass" role="tab" id="tab-android" aria-controls="panel-android" aria-selected="false" tabindex="-1" data-os="android">
-          <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true" class="os-ico"><path d="M5 10.5h14v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 17.5zM7.6 4.6l-.9-1.6m9.7 1.6l.9-1.6M5 9.5a7 7 0 0 1 14 0z" fill="currentColor" stroke="none"/><circle cx="9" cy="7" r=".85" fill="var(--bg)" stroke="none"/><circle cx="15" cy="7" r=".85" fill="var(--bg)" stroke="none"/><rect x="2" y="10.6" width="2.4" height="6.4" rx="1.2" fill="currentColor" stroke="none"/><rect x="19.6" y="10.6" width="2.4" height="6.4" rx="1.2" fill="currentColor" stroke="none"/><rect x="7.4" y="19.4" width="2.4" height="4.1" rx="1.2" fill="currentColor" stroke="none"/><rect x="14.2" y="19.4" width="2.4" height="4.1" rx="1.2" fill="currentColor" stroke="none"/></svg>
-          <b>Android</b>
-          <small>12 ve üstü</small>
-        </button>
-      </div>
-
-      <!-- ── Windows ── -->
-      <div class="panel glass" id="panel-windows" role="tabpanel" aria-labelledby="tab-windows">
-        <div class="panel-head">
-          <div>
-            <h3>DPI Bypass for Windows</h3>
-            <p class="muted">Sürüm 1.0.0.22 · Windows 10 ve 11 (64-bit) · ~40 MB</p>
-          </div>
-          <a class="btn btn-primary btn-dl" href="https://github.com/ATOMGAMERAGA/DPI-Bypass-Windows/releases/download/v1.0.0.22/DpiBypass-Setup-1.0.0.22.exe">
-            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>
-            <span><b>.exe dosyasını indirin</b><small>DpiBypass-Setup-1.0.0.22.exe</small></span>
-          </a>
-        </div>
-
-        <h4 class="steps-title">Kurulum rehberi</h4>
-        <ol class="steps">
-          <li>
-            <b>İndirin.</b>
-            Yukarıdaki <i>“.exe dosyasını indirin”</i> düğmesine basın. Dosya
-            <code>İndirilenler</code> klasörüne iner.
-          </li>
-          <li>
-            <b>Çift tıklayın.</b>
-            <code>DpiBypass-Setup-1.0.0.22.exe</code> dosyasını çalıştırın.
-            Windows <i>“Bu uygulamanın cihazınızda değişiklik yapmasına izin
-            verilsin mi?”</i> derse <b>Evet</b> deyin — uygulama ağ ayarlarına
-            dokunduğu için yönetici izni gerekiyor.
-          </li>
-          <li>
-            <b>SmartScreen çıkarsa.</b>
-            Mavi bir pencere görürseniz <b>Daha fazla bilgi</b> → <b>Yine de
-            çalıştır</b>. Bu uyarı, uygulamanın henüz yeterli indirme sayısına
-            ulaşmamış olmasından kaynaklanır.
-          </li>
-          <li>
-            <b>İleri, ileri, bitti.</b>
-            Kurulum sihirbazı birkaç saniye sürer. Bitince DPI Bypass kendiliğinden
-            açılır ve Başlat menüsüne eklenir.
-          </li>
-          <li>
-            <b>Açın ve bekleyin.</b>
-            Uygulama ağınızı tanır, operatörünüzü algılar ve çalışan yöntemi
-            kendisi arar. Yeşil ışığı gördüğünüzde Discord ve engelli siteler
-            açılır. Başka hiçbir ayar yapmanız gerekmez.
-          </li>
-        </ol>
-
-        <details class="alt">
-          <summary>Kurulum yapmadan denemek isterim / PowerShell ile kurmak isterim</summary>
-          <p>PowerShell'i açıp şu tek satırı yapıştırın — son sürümü indirir, SHA256 ile doğrular ve sessizce kurar:</p>
-          <div class="code" data-copy="irm https://raw.githubusercontent.com/ATOMGAMERAGA/DPI-Bypass-Windows/main/scripts/install.ps1 | iex">
-            <code>irm https://raw.githubusercontent.com/ATOMGAMERAGA/DPI-Bypass-Windows/main/scripts/install.ps1 | iex</code>
-            <button class="copy" type="button" aria-label="Komutu kopyala">Kopyala</button>
-          </div>
-          <p class="muted small">
-            Taşınabilir (kurulumsuz) sürüm ve tüm dosyalar için
-            <a href="https://github.com/ATOMGAMERAGA/DPI-Bypass-Windows/releases/latest" target="_blank" rel="noopener">Releases sayfası</a>.
-          </p>
-        </details>
-
-        <p class="note">
-          <b>Gereken:</b> Windows 10 sürüm 1809 veya üstü / Windows 11 · 64-bit ·
-          yönetici hakkı. Windows 7, 8 ve 32-bit desteklenmez.
-        </p>
-      </div>
-
-      <!-- ── Linux ── -->
-      <div class="panel glass" id="panel-linux" role="tabpanel" aria-labelledby="tab-linux" hidden>
-        <div class="panel-head">
-          <div>
-            <h3>DPI Bypass for Linux</h3>
-            <p class="muted">systemd tabanlı dağıtımlar · GTK4 + libadwaita arayüz</p>
-          </div>
-          <a class="btn btn-ghost btn-dl" href="https://github.com/ATOMGAMERAGA/DPI-Bypass-Linux" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 19c-4 1.2-4-2.3-5.5-2.8M15 21v-3.4c0-.9-.1-1.3-.6-1.8 2.4-.3 4.9-1.2 4.9-5.4 0-1.2-.4-2.2-1.1-2.9.1-.3.5-1.4-.1-2.9 0 0-.9-.3-3 1.1a10.3 10.3 0 0 0-5.4 0C7.6 3.3 6.7 3.6 6.7 3.6c-.6 1.5-.2 2.6-.1 2.9-.7.7-1.1 1.7-1.1 2.9 0 4.2 2.5 5.1 4.9 5.4-.3.3-.5.8-.6 1.5V21"/></svg>
-            <span><b>Kaynak kod</b><small>GitHub deposu</small></span>
-          </a>
-        </div>
-
-        <h4 class="steps-title">Kurulum komutu</h4>
-        <p class="muted">Terminali açın ve şu tek satırı yapıştırın:</p>
-        <div class="code code-lg" data-copy="curl -fsSL https://raw.githubusercontent.com/atomgameraga/DPI-Bypass-Linux/main/install.sh | sudo bash">
-          <code>curl -fsSL https://raw.githubusercontent.com/atomgameraga/DPI-Bypass-Linux/main/install.sh | sudo bash</code>
-          <button class="copy" type="button" aria-label="Komutu kopyala">Kopyala</button>
-        </div>
-        <p class="muted small">
-          Betik dağıtımınızı kendi saptar, gereken paketleri kurar, servisi
-          etkinleştirir ve bitince <i>“Buradan sonrasına GUI uygulamasından devam
-          edin”</i> der. Uygulamayı Etkinlikler menüsünde <b>DPI Bypass</b>
-          adıyla bulursunuz.
-        </p>
-
-        <h4 class="steps-title">Desteklenen dağıtımlar</h4>
-        <ul class="chips">
-          <li>Fedora</li><li>RHEL</li><li>Rocky</li><li>AlmaLinux</li>
-          <li>Ubuntu</li><li>Debian</li><li>Linux Mint</li><li>Pop!_OS</li><li>Kali</li>
-          <li>Arch</li><li>Manjaro</li><li>EndeavourOS</li>
-          <li>openSUSE</li><li>Alpine</li><li>Void</li><li>Solus</li>
-        </ul>
-        <p class="muted small">
-          Kısacası <code>dnf</code>, <code>apt</code>, <code>pacman</code>,
-          <code>zypper</code>, <code>apk</code>, <code>xbps</code> veya
-          <code>eopkg</code> kullanan her dağıtım.
-        </p>
-
-        <details class="alt">
-          <summary>Gereksinimler ve kaldırma</summary>
-          <p class="muted small">
-            <b>Gereken:</b> systemd · Python 3.8+ · nftables (yoksa iptables) ·
-            arayüz için GTK 4 ve libadwaita 1.2+.
-          </p>
-          <p>Kaldırmak için:</p>
-          <div class="code" data-copy="sudo bash install.sh --uninstall">
-            <code>sudo bash install.sh --uninstall</code>
-            <button class="copy" type="button" aria-label="Komutu kopyala">Kopyala</button>
-          </div>
-        </details>
-
-        <p class="note">
-          Servis sistem açılışında kendiliğinden başlar. Durumu görmek için
-          <code>dpi-bypass status</code>, canlı günlük için
-          <code>dpi-bypass logs -f</code>.
-        </p>
-      </div>
-
-      <!-- ── Android ── -->
-      <div class="panel glass" id="panel-android" role="tabpanel" aria-labelledby="tab-android" hidden>
-        <div class="panel-head">
-          <div>
-            <h3>DPI Bypass for Android</h3>
-            <p class="muted">Sürüm 2.2.0 · Android 12 ve üstü · ~25 MB</p>
-          </div>
-          <a class="btn btn-primary btn-dl" href="https://github.com/ATOMGAMERAGA/DPI-Bypass-DC/releases/download/v2.2.0/DPIBypass-2.2.0.apk">
-            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>
-            <span><b>.apk dosyasını indirin</b><small>DPIBypass-2.2.0.apk</small></span>
-          </a>
-        </div>
-
-        <h4 class="steps-title">Kurulum rehberi</h4>
-        <ol class="steps">
-          <li><b>İndirin.</b> Yukarıdaki düğmeye basın; APK indirilenlere iner.</li>
-          <li>
-            <b>Bilinmeyen kaynaklara izin verin.</b>
-            Dosyaya dokunduğunuzda Android izin ister:
-            <b>Ayarlar</b> → <b>Bu kaynağa izin ver</b> → geri dönün. Bu izni
-            tarayıcınıza ya da dosya yöneticinize bir kez vermeniz yeterli.
-          </li>
-          <li><b>Kur’a basın.</b> Play Protect uyarısı çıkarsa <b>Yine de kur</b> deyin.</li>
-          <li>
-            <b>VPN iznini onaylayın.</b>
-            Uygulamayı açıp bağlan düğmesine bastığınızda Android bir VPN bağlantı
-            isteği gösterir — <b>Tamam</b> deyin. Bu, trafiğin cihaz içinde
-            işlenebilmesi için gereken yerel tüneldir; hiçbir sunucuya trafik
-            gönderilmez.
-          </li>
-          <li>
-            <b>Bitti.</b> Otomatik mod operatörünüzü tanır, stratejileri tek tek
-            sınar ve en hızlı çalışanı seçer. İsterseniz Hızlı Panel'e tile
-            ekleyip tek dokunuşla açıp kapatabilirsiniz.
-          </li>
-        </ol>
-
-        <details class="alt">
-          <summary>Otomatik güncelleme almak istiyorum</summary>
-          <p class="muted small">
-            Uygulama Google Play'de değil. Güncellemeleri otomatik almak için
-            <b>Obtainium</b> kurup kaynak olarak
-            <code>github.com/ATOMGAMERAGA/DPI-Bypass-DC</code> deposunu ekleyin;
-            yeni sürüm çıktığında bildirim gelir.
-          </p>
-          <p class="muted small">
-            Tüm sürümler:
-            <a href="https://github.com/ATOMGAMERAGA/DPI-Bypass-DC/releases/latest" target="_blank" rel="noopener">Releases sayfası</a>.
-          </p>
-        </details>
-
-        <p class="note">
-          <b>Gereken:</b> Android 12 ve üstü. Root gerekmez. Uygulama
-          Firebase/Play Services kullanmaz.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ ÖZELLİKLER ══ -->
-  <section class="section" id="ozellikler">
-    <div class="wrap">
-      <header class="sec-head">
-        <h2>Neden VPN'den farklı?</h2>
-        <p>Trafiğiniz cihazınızdan çıkmadan önce yerelde yeniden şekillenir. Başka bir ülkeye uğramaz.</p>
-      </header>
-
-      <div class="feats">
-        <article class="feat glass">
-          <span class="fico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2.5L4.8 13.2c-.4.5 0 1.3.7 1.3h5l-1 7 8.7-10.7c.4-.5 0-1.3-.7-1.3h-5z"/></svg></span>
-          <h3>Ping artmaz</h3>
-          <p>
-            Yalnızca bağlantının <b>ilk paketi</b> (TLS ClientHello) yeniden
-            şekillendirilir; veri akışına dokunulmaz. Oyun, ses ve indirme hızı
-            aynı kalır.
-          </p>
-        </article>
-
-        <article class="feat glass">
-          <span class="fico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.3"/><circle cx="12" cy="12" r="4"/><path d="M12 1.6v2.6M12 19.8v2.6M1.6 12h2.6M19.8 12h2.6"/></svg></span>
-          <h3>Kendi kendine ayar bulur</h3>
-          <p>
-            Operatörünüzü (Türk Telekom, Turkcell, Vodafone, TurkNet…) algılar,
-            yöntemleri <b>gerçek bir discord.com el sıkışmasıyla</b> tek tek sınar
-            ve en hızlı çalışanı seçer.
-          </p>
-        </article>
-
-        <article class="feat glass">
-          <span class="fico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.6 8.6a14 14 0 0 1 18.8 0M5.8 12.2a9.4 9.4 0 0 1 12.4 0M9 15.8a4.8 4.8 0 0 1 6 0"/><circle cx="12" cy="19.2" r="1.2" fill="currentColor" stroke="none"/></svg></span>
-          <h3>Ağ değişince yeniden bulur</h3>
-          <p>
-            Wi-Fi'dan mobil veriye geçtiğinizde arama arka planda yeniden başlar.
-            O ağ daha önce görüldüyse kayıtlı yöntem ilk sırada denenir — saniyeler
-            içinde hazır.
-          </p>
-        </article>
-
-        <article class="feat glass">
-          <span class="fico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l7.4 2.7v6.2c0 4.2-3.1 7.7-7.4 9.2-4.3-1.5-7.4-5-7.4-9.2V5.3z"/><path d="M9 12.2l2.1 2.1 4.2-4.4"/></svg></span>
-          <h3>DNS engeli de aşılır</h3>
-          <p>
-            Sorgular <b>DNS-over-HTTPS</b> ile taşınır: Cloudflare birincil, Google
-            ve Quad9 yedek. DNS zehirlenmesi ve DNS düzeyindeki engel devre dışı
-            kalır.
-          </p>
-        </article>
-
-        <article class="feat glass">
-          <span class="fico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/><circle cx="9" cy="7" r="2.3" fill="var(--bg)"/><circle cx="15.5" cy="12" r="2.3" fill="var(--bg)"/><circle cx="8" cy="17" r="2.3" fill="var(--bg)"/></svg></span>
-          <h3>Neyin korunacağını siz seçin</h3>
-          <p>
-            Yalnızca Discord, engelli site listesi, tarayıcılar ya da tüm sistem.
-            Açtığınız yeni bir engelli alan adı sessizce sınanır ve listeye
-            eklenir.
-          </p>
-        </article>
-
-        <article class="feat glass">
-          <span class="fico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.4 7.2L3.6 12l4.8 4.8M15.6 7.2L20.4 12l-4.8 4.8M13.6 4.4l-3.2 15.2"/></svg></span>
-          <h3>Açık kaynak</h3>
-          <p>
-            Üç uygulamanın da tüm kaynak kodu GitHub'da, <b>GPL-3.0</b> lisansıyla.
-            Ne yaptığını satır satır okuyabilirsiniz.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ SSS ══ -->
-  <section class="section" id="sss">
-    <div class="wrap wrap-narrow">
-      <header class="sec-head">
-        <h2>Sık sorulanlar</h2>
-      </header>
-
-      <div class="faq">
-        <details class="glass">
-          <summary>Bu bir VPN mi?</summary>
-          <p>
-            Hayır. VPN trafiğinizi başka bir ülkedeki sunucuya gönderir; bu yüzden
-            ping artar ve hız düşer. DPI Bypass hiçbir uzak sunucuya trafik
-            göndermez — paketleri yalnızca cihazınızın içinde yeniden düzenler.
-            IP adresinizi gizlemez ve trafiğinizi şifrelemez; amacı anonimlik değil,
-            erişimdir.
-          </p>
-        </details>
-
-        <details class="glass">
-          <summary>İnternetim yavaşlar mı?</summary>
-          <p>
-            Hayır. İşlem yalnızca bağlantı kurulurken, ilk birkaç bayt üzerinde
-            yapılır. Bant genişliği kaybı ve ölçülebilir gecikme artışı oluşmaz.
-            Otomatik seçim de zaten çalışan yöntemler arasından en düşük gecikmeliyi
-            tercih eder.
-          </p>
-        </details>
-
-        <details class="glass">
-          <summary>Discord dışındaki siteler için de çalışıyor mu?</summary>
-          <p>
-            Evet. Yerleşik listede Türkiye'de DPI ile engellendiği bilinen adresler
-            var. Ayrıca otomatik keşif özelliği, açtığınız yeni bir alan adı
-            atlatmasız açılmayıp atlatmayla açılıyorsa onu sessizce sınayıp kalıcı
-            olarak listeye ekler. İstediğiniz alan adını elle de ekleyebilirsiniz.
-          </p>
-        </details>
-
-        <details class="glass">
-          <summary>Neden Windows uyarı veriyor?</summary>
-          <p>
-            SmartScreen, yeterince yaygın indirilmemiş her programa aynı uyarıyı
-            gösterir. <b>Daha fazla bilgi</b> → <b>Yine de çalıştır</b> ile
-            geçebilirsiniz. Dosyanın GitHub üzerindeki resmî sürüm sayfasından
-            indiğinden emin olmanız yeterlidir.
-          </p>
-        </details>
-
-        <details class="glass">
-          <summary>Yasal mı?</summary>
-          <p>
-            Uygulama, sizin kendi cihazınızdan çıkan kendi trafiğinizi yerelde
-            yeniden düzenleyen açık kaynak bir yazılımdır — GoodbyeDPI, ByeDPI ve
-            benzerleriyle aynı yaklaşımdır. Kullanım sorumluluğu kullanıcıya
-            aittir; bulunduğunuz ülkenin mevzuatına uymak sizin sorumluluğunuzdadır.
-          </p>
-        </details>
-
-        <details class="glass">
-          <summary>Kaldırmak istersem?</summary>
-          <p>
-            Windows'ta <b>Ayarlar → Uygulamalar</b> üzerinden normal bir program
-            gibi kaldırılır. Linux'ta
-            <code>sudo bash install.sh --uninstall</code> tüm çekirdek kurallarını
-            geri alır. Android'de uygulamayı kaldırmanız yeterlidir. Hiçbir
-            platformda geride ayar artığı bırakmaz.
-          </p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="footer">
-  <div class="wrap footer-inner">
-    <div class="footer-brand">
-      <img src="assets/img/logo.svg" alt="" width="36" height="36">
-      <div>
-        <b>DPI Bypass</b>
-        <span>Yapımcı: <b>Atom Gamer Arda A.G.A</b></span>
-      </div>
-    </div>
-
-    <nav class="footer-links" aria-label="Depolar">
-      <a href="https://github.com/ATOMGAMERAGA/DPI-Bypass-Windows" target="_blank" rel="noopener">Windows deposu</a>
-      <a href="https://github.com/ATOMGAMERAGA/DPI-Bypass-Linux" target="_blank" rel="noopener">Linux deposu</a>
-      <a href="https://github.com/ATOMGAMERAGA/DPI-Bypass-DC" target="_blank" rel="noopener">Android deposu</a>
-    </nav>
-  </div>
-  <div class="wrap footer-legal">
-    <p>GPL-3.0 lisansı ile açık kaynak. VPN değildir, trafiği şifrelemez.</p>
-    <p>© <span id="year">2026</span> Atom Gamer Arda A.G.A</p>
-  </div>
-</footer>
-
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-<script src="assets/js/app.js" defer></script>
-</body>
-</html>
+  <p class="dialog-footnote">Ücretsiz. Açık kaynak. Dosyalar resmî GitHub depolarından gelir.</p>
+</dialog><div id="toast" class="toast" role="status" aria-live="polite"></div><script src="/assets/js/downloads.js?v=6897a6ffe287" defer></script><script src="/assets/js/app.js?v=6897a6ffe287" defer></script></body></html>
